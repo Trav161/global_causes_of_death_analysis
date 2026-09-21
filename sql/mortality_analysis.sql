@@ -14,22 +14,22 @@
 -- 1. DATA PREPARATION
 -- ============================================================
 
--- Rename Entity column to Country for readability
-EXEC sp_rename 'Cdeath.Entity', 'Country', 'COLUMN';
+-- Source data is loaded and prepared by 00_setup_notes.sql.
 
 -- ============================================================
 -- 2. RESHAPE DATA
 -- ============================================================
 
 -- Create temporary table to store the transformed dataset
--- Code is retained so country-level records can be separated
+-- Code is retained so country level records can be separated
 -- from regional and aggregate rows later in the analysis
 
+DROP TABLE IF EXISTS #Cdeath1;
 CREATE TABLE #Cdeath1
 (
     Country VARCHAR(255),
     Code VARCHAR(50),
-    Year NVARCHAR(255),
+    Year INT(255),
     Causes VARCHAR(255),
     Total_deaths BIGINT
 );
