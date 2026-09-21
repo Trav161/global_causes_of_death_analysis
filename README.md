@@ -38,6 +38,8 @@ The dataset includes:
 * Number of deaths by cause
 * Multiple mortality categories, including cardiovascular disease, alcohol use disorders, drug use, self harm, infectious diseases, and other causes
 
+The exact dataset snapshot used for this analysis is preserved in the repository so the project can be reproduced even if the original source dataset changes in the future.
+
 **Original Dataset:** [Our World in Data](https://ourworldindata.org/grapher/annual-number-of-deaths-by-cause)
 
 **Project Dataset:** [`data/annual-number-of-deaths-by-cause.csv`](data/annual-number-of-deaths-by-cause.csv)
@@ -48,15 +50,44 @@ The dataset includes:
 * Tableau — Data visualization and dashboard development
 * GitHub — Project documentation and version control
 
+## Reproducing the Analysis
+
+The SQL portion of this project can be reproduced using Microsoft SQL Server and SQL Server Management Studio (SSMS).
+
+1. Clone or download this repository.
+2. Open SQL Server Management Studio and connect to a SQL Server database.
+3. Open sql/00_setup_notes.sql.
+4. Update the CSV file path in the BULK INSERT statement so that it points to:
+
+data/annual-number-of-deaths-by-cause.csv
+
+5. Run 00_setup_notes.sql.
+
+The setup script:
+* Creates the Cdeath source table
+* Loads the project CSV
+* Assigns column names
+* Performs basic row count and year range validation
+  
+6. Confirm that the validation query returns 6,840 records covering 1990–2019.
+
+7. Run sql/mortality_analysis.sql.
+
+The analysis script transforms the original wide dataset into a long format temporary table using SQL Server UNPIVOT. It then performs the exploratory analysis, country level rankings, trend analysis, and country average comparisons described below.
+
+The Tableau dashboard represents the visualization portion of the project and can be viewed through the dashboard link at the top of this README.
 
 ## Data Transformation:
 ---
 The original dataset stored each cause of death in a separate column. Before performing the analysis, I restructured the data into a format that made comparisons, aggregations, and ranking easier to perform in SQL.
 
 1. Standardized Column Names
-I renamed the Entity field to Country to make the column more intuitive throughout the analysis.
+The repository includes a setup script that loads the original CSV into SQL Server and assigns shorter column names while preserving the underlying data.
 
-EXEC sp_rename 'Cdeath.Entity', 'Country', 'COLUMN';
+For example: 
+Deaths - Cardiovascular diseases - Sex: Both - Age: All Ages (Number) → CardiovascularDiseases
+Deaths - Alcohol use disorders - Sex: Both - Age: All Ages (Number) → AlcoholUseDisorders
+Deaths - Self-harm - Sex: Both - Age: All Ages (Number) → Selfharm
 
 2. Reshaped the Dataset with UNPIVOT
 The original dataset was structured in a wide format, with individual causes of death stored across multiple columns. I used SQL Server's UNPIVOT operation to transform these columns into two fields:
@@ -73,20 +104,9 @@ Restructuring the data allowed me to aggregate deaths by cause, compare countrie
 3. Created a Temporary Analysis Table
 Because the transformed data was used repeatedly throughout the project, I stored the UNPIVOT results in a temporary table rather than rewriting the transformation for every query.
 
-CREATE TABLE #Cdeath1
-(
-    Country VARCHAR(255),
-    Code VARCHAR(50),
-    Year NVARCHAR(255),
-    Causes VARCHAR(255),
-    Total_deaths BIGINT
-);
-
 I also retained the `Code` field so I could distinguish individual country records from regional and aggregate entries later in the analysis.
 
 The transformed records were inserted into #Cdeath1, which became the primary table used throughout the exploratory analysis.
-
-This process changed the dataset from a wide reporting structure into a format that was much easier to query and analyze using SQL.
 
 ---
 ## Analysis
