@@ -1,176 +1,220 @@
-1. Leading Causes of Death Globally
+# Global Causes of Death Analysis
+
+## 1. Leading Causes of Death Globally
+
 The first question I wanted to answer was:
 
-What were the Top 10 Causes of Death globally between 1990 and 2019?
+**What were the Top 10 causes of death globally between 1990 and 2019?**
 
-Using the dataset's World data, I grouped each cause of death and calculated the total number of deaths across the full time period.
+Using the dataset's `World` data, I grouped each cause of death and calculated the total number of deaths across the full time period.
 
-Here we can see that cardiovascular disease was the leading cause of death worldwide, followed by Chronic Respiratory Diseases, Respiratory Infections, Neonatal Disorders, Digestive Diseases, Diarrheal Diseases, Tuberculosis, Chronic Liver Diseases, and Road Injuries.
+The results showed that cardiovascular disease was the leading cause of death worldwide. Other major causes included chronic respiratory diseases, respiratory infections, neonatal disorders, digestive diseases, diarrheal diseases, tuberculosis, chronic liver diseases, and road injuries.
 
 While understanding which causes of death had the greatest global impact was helpful, I also wanted to look deeper.
 
-Did these same patterns appear across individual countries, or were there places where certain causes of death had a much different impact?
+**Did these same patterns appear across individual countries, or were there places where certain causes of death had a very different impact?**
 
 That question led me into the next part of the analysis.
 
-2. Where Did Cardiovascular Disease Rank Differently?
-While understanding which causes of death had the greatest global impact was helpful, I also wanted to look at countries where the pattern was different.
+---
 
-Which countries did not have cardiovascular disease within their Top 5 causes of death?
+## 2. Where Did Cardiovascular Disease Rank Differently?
+
+After looking at the global results, I wanted to identify countries where the mortality pattern differed.
+
+**Which countries did not have cardiovascular disease within their Top 5 causes of death?**
 
 To answer this, I ranked each cause of death within individual countries and used a CTE to filter the results.
 
-Several countries, including Burkina Faso, Malawi, Nigeria, Niger, Somalia, and Côte d'Ivoire, stood out.
+Several countries stood out, including:
 
-This did not necessarily mean that these countries experienced fewer cardiovascular deaths overall. Instead, other causes of death held a higher ranking within their mortality profiles, including Malaria, HIV/AIDS, and Diarrheal Diseases.
+* Burkina Faso
+* Malawi
+* Nigeria
+* Niger
+* Somalia
+* Côte d'Ivoire
+
+This did not necessarily mean that these countries experienced fewer cardiovascular deaths overall. Instead, other causes of death ranked higher within their mortality profiles, including malaria, HIV/AIDS, and diarrheal diseases.
 
 This made me think more about how mortality patterns can differ depending on the health challenges affecting a particular country.
 
 From here, three categories caught my attention:
 
-Alcohol use
-Drug use
-Self harm/Suicide
-My next goal was to find out which countries had higher or lower rankings for deaths related to each of these categories.
+* Alcohol use disorders
+* Drug use
+* Self harm
 
-3. Alcohol, Drug Use, and Self Harm Rankings
-When exploring the different causes of death by country, I became especially interested in three categories:
+My next goal was to determine which countries had relatively high or low rankings for deaths associated with these categories.
 
-Alcohol use
-Drug use
-Self harm/Suicide
-My first goal was to find out which countries had higher or lower rankings for deaths related to each of these causes.
+---
 
-Alcohol Related Deaths
-I first looked at countries where alcohol related deaths ranked within their Top 10 causes of death.
+## 3. Alcohol, Drug Use, and Self Harm Rankings
 
-A pattern started to emerge. Several European countries appeared higher in the rankings, with Ukraine standing out as alcohol use disorder deaths ranked relatively high compared with other causes of death within the country.
+### Alcohol Related Deaths
 
-This gave me an opportunity to dig deeper:
+I first looked at countries where alcohol use disorder deaths ranked within their Top 10 causes of death.
 
-Why were alcohol related deaths ranking so highly in some of these countries?
+A pattern started to emerge. Several European countries appeared relatively high in the rankings, with Ukraine standing out because alcohol use disorder deaths ranked highly compared with other causes of death within the country.
 
-Drug Related Deaths
+This gave me another question to explore:
+
+**Why were alcohol related deaths ranking so highly in some of these countries?**
+
+### Drug Related Deaths
+
 Next, I looked at countries where drug related deaths ranked within their Top 15 causes of death.
 
 Seeing the United States high on the list was not unexpected, but I was more surprised by some of the results within the United Kingdom, particularly Scotland.
 
 That raised another question:
 
-What factors might help explain why drug related mortality ranked so highly in certain countries?
+**What factors might help explain why drug related mortality ranked so highly in certain countries?**
 
-Self Harm / Suicide
+### Self Harm
+
 Finally, I looked at countries where self harm ranked within their Top 10 causes of death.
 
-One result that immediately stood out to me was Sri Lanka. This pushed me to look beyond the ranking itself and investigate why self-harm deaths had such a large impact within the country.
+One result that immediately stood out to me was Sri Lanka. This pushed me to look beyond the ranking itself and investigate how self harm deaths had changed over time.
 
-From here, I wanted to understand how Sri Lanka's self harm deaths had changed over time and whether comparing the trend with another country could provide more context.
+From there, I wanted to determine whether comparing Sri Lanka with another country could provide additional context.
 
-SQL: View the full analysis
+---
 
-4. Looking Deeper: Sri Lanka and India
-Seeing Sri Lanka rank so highly for self harm deaths made me want to understand how those deaths had changed over time.
+## 4. Looking Deeper: Sri Lanka and India
 
-Had self harm deaths remained consistently high, or had the pattern changed between 1990 and 2019?
+Seeing Sri Lanka rank highly for self harm deaths made me want to understand how those deaths had changed over time.
+
+**Had self harm deaths remained consistently high, or had the pattern changed between 1990 and 2019?**
 
 When looking at Sri Lanka year by year, the data showed a sharp increase during the 1990s, followed by a noticeable decline in later years.
 
-This made me ask another question:
+This raised another question:
 
-What may have contributed to that decrease?
+**What may have contributed to that decrease?**
 
-One area that stood out in my research was Sri Lanka's restriction of highly toxic pesticides. Because pesticide self-poisoning had been an important contributor to suicide deaths within the country, these policy changes provided an interesting area for further investigation.
+One area that stood out in my additional research was Sri Lanka's restriction of highly toxic pesticides. Because pesticide self poisoning had been an important contributor to suicide deaths within the country, these policy changes became an interesting area for further investigation.
 
-But looking at one country alone did not tell the full story.
+However, looking at one country alone did not tell the full story.
 
 I then compared Sri Lanka with India to see whether a neighboring country showed a similar pattern.
 
-The trends were noticeably different, which reinforced something that became increasingly clear throughout this project: mortality patterns cannot always be understood through the numbers alone. Access to healthcare, economic conditions, public policy, culture, and other factors may all provide important context for what appears in the data.
+The trends were noticeably different. This reinforced something that became increasingly clear throughout the project: mortality patterns cannot always be understood through the numbers alone.
 
-SQL: View the full analysis
+Healthcare access, economic conditions, public policy, culture, and other factors may all provide important context for what appears in the data.
 
-5. Comparing Selected Countries With the Global Average
+---
+
+## 5. Comparing Selected Countries With the Average Country Total
+
 Another question I wanted to answer was:
 
-How do certain causes of death within individual countries compare with the average across other countries?
+**How do certain causes of death within individual countries compare with the average country total for the same cause?**
 
-To explore this, I calculated each country's total deaths by cause and compared those totals with the average country total for the same cause.
+To explore this, I calculated each country's total deaths by cause and compared those totals with the average across countries for that same cause.
 
-This gave me another way to identify countries that stood out and decide where I wanted to dig deeper.
+This gave me another way to identify countries that stood out and decide where deeper investigation might be useful.
 
-Alcohol Related Deaths: Nigeria
-When looking at alcohol related deaths, countries such as Ukraine continued to appear high in the results, which aligned with what I had already seen earlier in the analysis.
+### Alcohol Related Deaths: Nigeria
 
-However, I was surprised to see Nigeria stand out compared with the average.
+When looking at alcohol related deaths, countries such as Ukraine continued to appear prominently, which aligned with what I had already seen in the rankings.
+
+However, I was surprised to see Nigeria stand out when compared with the average country total.
 
 This made me ask:
 
-Why might alcohol related mortality be elevated in Nigeria?
+**What factors might provide context for alcohol related mortality in Nigeria?**
 
-In my additional research, I found that several factors may provide context, including population size, the availability of locally produced alcoholic beverages, cultural attitudes toward alcohol, and challenges surrounding the implementation of alcohol control policies.
+My additional research pointed toward several areas worth considering, including population size, locally produced alcoholic beverages, cultural attitudes toward alcohol, and challenges surrounding the implementation of alcohol control policies.
 
-This was another example of how the numbers could point me toward a pattern, but outside research was needed to better understand what might be happening behind it.
+The mortality data itself does not establish that these factors caused the pattern. Instead, it identified an area where additional public health research could provide useful context.
 
-Drug Related Deaths: Iran
-Next, I wanted to explore Iran, where drug related deaths also stood out in comparison with the average.
+### Drug Related Deaths: Iran
 
-This result raised more questions for me because Iran is located near countries such as Afghanistan and Pakistan, and I wanted to understand whether geography, drug trafficking routes, policy, and access to harm reduction services may help provide context for what I was seeing.
+Next, I explored Iran, where drug related deaths also stood out compared with the average country total.
 
-My research suggested that Iran's proximity to major opium producing and trafficking regions may be one factor worth considering, along with the country's strict drug laws and approach to harm reduction.
+This raised additional questions because of Iran's geographic location near Afghanistan and Pakistan.
 
-Again, the data did not explain why the pattern existed, but it helped me identify where deeper questions were worth asking.
+I wanted to understand whether factors such as geography, drug trafficking routes, drug policy, and access to harm reduction services might provide context for the pattern.
 
-Self Harm / Suicide: Japan
-Finally, I looked more closely at Japan and self harm related deaths.
+My additional research suggested that Iran's proximity to major opium producing and trafficking regions may be relevant, along with the country's drug policies and approach to harm reduction.
 
-This led me to think about how work culture, social pressures, and suicide prevention policies may interact with mortality trends over time.
+Again, the mortality data did not explain why the pattern existed. Instead, it helped identify where deeper questions were worth asking.
 
-In my research, I came across concepts such as karoshi and karojisatsu, as well as national suicide prevention efforts implemented in Japan.
+### Self Harm: Japan
 
-What interested me most here was not just the mortality number itself, but how policy, culture, and social conditions may all influence the way a health issue develops within a country.
+Finally, I looked more closely at Japan and self harm deaths.
 
-What Did I Learn?
-Through this analysis, several things became clear to me.
+This led me to explore how social pressures, working conditions, and suicide prevention policies may relate to mortality trends over time.
 
-Mortality is complex
-Causes of death are influenced by more than one factor. Socioeconomic conditions, healthcare access, culture, geography, and public policy may all help explain why mortality patterns look different across countries.
+During my research, I came across concepts such as *karoshi* and *karojisatsu*, as well as national suicide prevention efforts implemented in Japan.
 
-Countries can have very different health priorities
-Looking at the rankings showed me that the leading causes of death are not always the same everywhere. In some countries, infectious diseases such as Malaria, HIV/AIDS, and Diarrheal Diseases held a much higher priority than causes that dominated globally.
+What interested me most was not only the mortality number itself, but how policy, culture, social conditions, and healthcare systems may provide additional context for public health outcomes.
 
-Policy can matter
-Sri Lanka was one of the clearest examples that made me think more about the relationship between policy and health outcomes. After seeing changes in self harm deaths over time, I became interested in how pesticide restrictions may have contributed to the decline.
+---
 
-The data can tell you where to look, but not always why
-One of the biggest things I learned from this project was that SQL can help identify patterns, differences, and outliers, but the data alone does not always explain why those patterns exist.
+## What Did I Learn?
 
-That is where additional research becomes important. The most interesting part of this project for me was being able to use the data to ask better questions and then explore how public policy, culture, healthcare systems, and socioeconomic conditions may provide additional context.
+### Mortality is complex
 
-Data analysis can support better questions
-This project helped me see how tools such as SQL can be used not only to organize and analyze large datasets, but also to identify areas where deeper research may be useful.
+Causes of death are influenced by many factors. Socioeconomic conditions, healthcare access, culture, geography, and public policy may all help explain why mortality patterns differ across countries.
 
-For me, that became one of the biggest takeaways from the project:
+### Countries can have very different health priorities
 
-The value of data is not only in finding the answer. Sometimes it is in helping you figure out what question to ask next.
+The rankings showed that the leading causes of death are not always the same everywhere.
 
-Limitations
-While this project helped me identify several interesting mortality patterns, there are some limitations to keep in mind.
+In some countries, infectious diseases such as malaria, HIV/AIDS, and diarrheal diseases ranked much higher than causes that dominated the global results.
 
-The dataset only covers 1990–2019, so more recent changes in mortality trends, healthcare policy, and public health interventions are not included.
+### Policy may provide important context
 
-The data also helped me identify patterns and differences between countries, but it cannot by itself explain why those differences exist. Factors such as culture, socioeconomic conditions, healthcare access, geography, and policy require additional research and should not be treated as proven causes based on this dataset alone.
+Sri Lanka was one of the clearest examples that made me think more about the relationship between policy and health outcomes.
 
-Another limitation is that this analysis primarily used total death counts. Population size and age distribution can influence those totals, so future analysis could also include population adjusted mortality rates to make comparisons between countries more precise.
+After observing changes in self harm deaths over time, I became interested in research examining whether pesticide restrictions may have contributed to the decline.
 
-These limitations also gave me ideas for how I could expand the project in the future.
+### Data can tell you where to look, but not always why
 
-Conclusion
-This project started with a broad question about the leading causes of death around the world, but as I continued exploring the data, it became clear that the most interesting part was understanding why certain countries looked different from others.
+One of the biggest things I learned from this project was that SQL can identify patterns, differences, and outliers, but the data alone does not necessarily explain why those patterns exist.
 
-Using SQL allowed me to identify patterns, rank causes of death, compare countries, and follow changes over time. From there, the analysis pushed me to ask deeper questions about public policy, healthcare access, socioeconomic conditions, culture, and geography.
+That is where additional research becomes important.
 
-One of the biggest things I took away from this project is that data can show us where something interesting is happening, but it does not always explain why. This project was helpful in allowing me to combine technical analysis with my interest in public health and use the results to guide further research into the factors that may influence health outcomes across different countries.
+One of the most interesting parts of the project was using the data to ask better questions and then exploring how public policy, culture, healthcare systems, geography, and socioeconomic conditions might provide additional context.
 
-There are still many directions this analysis could go, including the use of population adjusted mortality rates, additional socioeconomic datasets, and more recent mortality data.
+### Data analysis can support better questions
 
-For now, this project gave me a stronger understanding of how SQL can be used to move from a large dataset to more focused questions and meaningful insights.
+This project helped me see how SQL can be used not only to organize and analyze large datasets, but also to identify areas where deeper research may be useful.
+
+For me, one of the biggest takeaways was:
+
+> **The value of data is not only in finding the answer. Sometimes it is in helping you figure out what question to ask next.**
+
+---
+
+## Limitations
+
+While this project helped identify several interesting mortality patterns, there are important limitations to keep in mind.
+
+The dataset covers 1990–2019, so more recent changes in mortality trends, healthcare policy, and public health interventions are not included.
+
+The data can identify patterns and differences between countries, but it cannot independently explain why those differences exist. Factors such as culture, socioeconomic conditions, healthcare access, geography, and public policy require additional research and should not be treated as proven causes based on this dataset alone.
+
+The analysis also primarily uses total death counts. Population size and age distribution can strongly influence these totals, meaning that comparisons between countries should be interpreted carefully.
+
+A future version of the analysis could incorporate population adjusted or age standardized mortality rates to make comparisons between countries more precise.
+
+These limitations also provide possible directions for expanding the project in the future.
+
+---
+
+## Conclusion
+
+This project started with a broad question about the leading causes of death around the world, but as I continued exploring the data, the most interesting part became understanding why certain countries looked different from others.
+
+Using SQL allowed me to identify patterns, rank causes of death, compare countries, and examine changes over time. From there, the results led to deeper questions about public policy, healthcare access, socioeconomic conditions, culture, and geography.
+
+One of the biggest things I took away from the project is that data can show where something interesting is happening, but it does not always explain why.
+
+This project allowed me to combine technical analysis with my interest in public health and use the results to guide further research into factors that may influence health outcomes across different countries.
+
+There are still several directions the analysis could take, including population adjusted mortality rates, additional socioeconomic datasets, and more recent mortality data.
+
+For now, the project gave me a stronger understanding of how SQL can be used to move from a large dataset to more focused questions and meaningful insights.
