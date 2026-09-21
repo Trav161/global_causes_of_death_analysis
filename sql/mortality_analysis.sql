@@ -308,7 +308,7 @@ SELECT
     TotalNumberDeaths,
     RankNumber
 FROM Ranked_causes
-WHERE Causes LIKE '%Alcohol%'
+WHERE Causes LIKE 'AlcoholUseDisorder'
   AND RankNumber <= 10
 ORDER BY
     RankNumber,
@@ -344,14 +344,14 @@ SELECT
     TotalNumberDeaths,
     RankNumber
 FROM Ranked_causes
-WHERE Causes LIKE '%Drug%'
+WHERE Causes LIKE 'DrugUse'
   AND RankNumber <= 15
 ORDER BY
     RankNumber,
     TotalNumberDeaths DESC;
 
 -- ============================================================
--- 3.7 SELF-HARM / SUICIDE MORTALITY RANKINGS
+-- 3.7 SELF HARM / SUICIDE MORTALITY RANKINGS
 -- ============================================================
 
 -- Identify countries where self-harm ranked among
@@ -381,7 +381,7 @@ SELECT
     TotalNumberDeaths,
     RankNumber
 FROM Ranked_causes
-WHERE Causes LIKE '%Selfharm%'
+WHERE Causes LIKE 'Selfharm'
   AND RankNumber <= 10
 ORDER BY
     RankNumber,
@@ -415,7 +415,7 @@ SELECT
     TotalNumberDeaths,
     RankNumber
 FROM Ranked_causes
-WHERE Causes LIKE '%Selfharm%'
+WHERE Causes LIKE 'Selfharm'
   AND RankNumber > 10
 ORDER BY
     RankNumber,
@@ -457,7 +457,7 @@ ORDER BY
     Country;
 
 -- ============================================================
--- 3.10 COMPARE COUNTRY TOTALS WITH THE GLOBAL AVERAGE
+-- 3.10 COMPARE COUNTRY TOTALS WITH THE AVERAGE COUNTRY TOTAL
 -- ============================================================
 
 -- First calculate the total number of deaths for each
@@ -482,7 +482,7 @@ GlobalCauseAverages AS
 (
     SELECT
         Causes,
-        AVG(CAST(CountryTotalDeaths AS DECIMAL(18,2))) AS GlobalAverageDeaths
+        AVG(CAST(CountryTotalDeaths AS DECIMAL(18,2))) AS AverageCountryDeaths
     FROM CountryCauseTotals
     GROUP BY Causes
 )
@@ -492,20 +492,20 @@ SELECT
     c.Causes,
     c.CountryTotalDeaths,
     g.GlobalAverageDeaths,
-    c.CountryTotalDeaths - g.GlobalAverageDeaths AS DifferenceFromGlobalAvg
+    c.CountryTotalDeaths - a.AverageCountryDeaths AS DifferenceFromCountryAvg
 FROM CountryCauseTotals c
-JOIN GlobalCauseAverages g
-    ON c.Causes = g.Causes
+JOIN CountryCauseAverages a
+    ON c.Causes = a.Causes
 
 -- Optional filters:
--- WHERE c.Causes LIKE '%Alcohol%'
--- WHERE c.Causes LIKE '%Drug%'
--- WHERE c.Causes LIKE '%Selfharm%'
+-- WHERE c.Causes LIKE 'AlcoholUseDisorder'
+-- WHERE c.Causes LIKE 'DrugUse'
+-- WHERE c.Causes LIKE 'Selfharm'
 
-ORDER BY DifferenceFromGlobalAvg DESC;
+ORDER BY DifferenceFromCountryAvg DESC;
 
 -- ============================================================
--- 3.11 FOCUSED GLOBAL AVERAGE CASE STUDIES
+-- 3.11 FOCUSED Country AVERAGE CASE STUDIES
 -- ============================================================
 
 -- Compare selected country/cause combinations that stood out
@@ -524,11 +524,11 @@ WITH CountryCauseTotals AS
         Causes
 ),
 
-GlobalCauseAverages AS
+CountryCauseAverages AS
 (
     SELECT
         Causes,
-        AVG(CAST(CountryTotalDeaths AS DECIMAL(18,2))) AS GlobalAverageDeaths
+        AVG(CAST(CountryTotalDeaths AS DECIMAL(18,2))) AS AverageCountryDeaths
     FROM CountryCauseTotals
     GROUP BY Causes
 )
@@ -537,15 +537,15 @@ SELECT
     c.Country,
     c.Causes,
     c.CountryTotalDeaths,
-    g.GlobalAverageDeaths,
-    c.CountryTotalDeaths - g.GlobalAverageDeaths AS DifferenceFromGlobalAvg
+    a.GlobalAverageDeaths,
+    c.CountryTotalDeaths - a.GlobalCountryDeaths AS DifferenceFromCountryAvg
 FROM CountryCauseTotals c
-JOIN GlobalCauseAverages g
-    ON c.Causes = g.Causes
+JOIN CountryCauseAverages a
+    ON c.Causes = a.Causes
 WHERE
-       (c.Country = 'Nigeria' AND c.Causes LIKE '%Alcohol%')
-    OR (c.Country = 'Iran'    AND c.Causes LIKE '%Drug%')
-    OR (c.Country = 'Japan'   AND c.Causes LIKE '%Selfharm%')
+       (c.Country = 'Nigeria' AND c.Causes LIKE 'AlcoholUseDisorders')
+    OR (c.Country = 'Iran'    AND c.Causes LIKE 'DrugUse')
+    OR (c.Country = 'Japan'   AND c.Causes LIKE 'Selfharm')
 ORDER BY
     c.Country,
     c.Causes;
