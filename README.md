@@ -116,10 +116,10 @@ The SQL analysis explores global mortality patterns across countries and causes 
 The analysis includes:
 
 - Leading global causes of death
-- Country-level cause rankings
+- Country level cause rankings
 - Alcohol-related mortality
-- Drug-related mortality
-- Self-harm mortality
+- Drug related mortality
+- Self harm mortality
 - Sri Lanka and India trend comparisons
 - Country totals compared with average country totals
 - Focused country case studies
